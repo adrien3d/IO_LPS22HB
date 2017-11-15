@@ -1,4 +1,4 @@
-Iotech Arduino Library for
+IoThings Arduino Library for
 LPS22HB MEMS Pressure Sensor (260-1260 hPa) Absolute Digital Barometer Breakout
 ==============================================================
 

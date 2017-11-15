@@ -9,7 +9,7 @@
 	SDA to A4
 	GND to common groud 
 
-  Written by Adrien Chapelet for Iotech
+  Written by Adrien Chapelet for IoThings
  ***************************************************************************/
 
 #include <Wire.h>

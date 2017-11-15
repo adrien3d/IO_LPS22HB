@@ -1,5 +1,5 @@
 ##################################################################
-# Syntax Coloring Map For IoTech LPS22HB MEMS Absolute Barometer / Pressure Sensor breakout board
+# Syntax Coloring Map For IoThings LPS22HB MEMS Absolute Barometer / Pressure Sensor breakout board
 ##################################################################
 
 ##################################################################

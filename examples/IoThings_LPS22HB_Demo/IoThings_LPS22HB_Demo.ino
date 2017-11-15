@@ -9,7 +9,7 @@
 	SDA to A4
 	GND to common groud 
 
-  Written by Adrien Chapelet for Iotech
+  Written by Adrien Chapelet for IoThings
  ***************************************************************************/
 
 #include <Wire.h>
@@ -21,7 +21,7 @@ IO_LPS22HB lps22hb;
 void setup()
 {
 	Serial.begin(9600);
-	Serial.println("IoTech LPS22HB Arduino Test");
+	Serial.println("IoThings LPS22HB Arduino Test");
 	
 	lps22hb.begin(0x5D);
 
