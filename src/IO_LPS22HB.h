@@ -28,6 +28,8 @@
 #define LPS22HB_TEMP_OUT_L	0X2B //LSB
 #define LPS22HB_TEMP_OUT_H	0X2C //MSB
 
+#define LPS22HB_WHO_AM_I_VALUE	0xB1 // Expected return value of WHO_AM_I register
+
 
 
 class IO_LPS22HB {

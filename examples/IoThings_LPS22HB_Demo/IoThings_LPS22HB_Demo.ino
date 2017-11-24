@@ -25,9 +25,16 @@ void setup()
 	
 	lps22hb.begin(0x5D);
 
+	byte who_am_i = lps22hb.whoAmI();
 	Serial.print("Who Am I? 0x");
-	Serial.print(lps22hb.whoAmI(), HEX);
+	Serial.print(who_am_i, HEX);
 	Serial.println(" (expected: 0xB1)");
+	if (who_am_i != LPS22HB_WHO_AM_I_VALUE) {
+		Serial.println("Error while retrieving WHO_AM_I byte...");
+		while (true) {
+		      // loop forever
+		}
+	}
 }
 
 void loop()
