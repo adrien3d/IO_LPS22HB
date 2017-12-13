@@ -12,10 +12,10 @@ SP_LPS22HB	KEYWORD1
 # Methods and Functions (KEYWORD2)
 ##################################################################
 
-begin KEYWORD2
-whoAmI KEYWORD2
+begin	KEYWORD2
+whoAmI	KEYWORD2
 
-readTemperature KEYWORD2
-readPressure KEYWORD2
-readPressureRAW KEYWORD2
-readPressureUI KEYWORD2
+readTemperature	KEYWORD2
+readPressure	KEYWORD2
+readPressureRAW	KEYWORD2
+readPressureUI	KEYWORD2
