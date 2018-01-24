@@ -90,8 +90,8 @@ float IO_LPS22HB::readTemperature() {
 	uint8_t tempOutH = read(LPS22HB_TEMP_OUT_H);
 	uint8_t tempOutL = read(LPS22HB_TEMP_OUT_L);
 
-	int16_t val = tempOutH << 8 | tempOutL & 0xff;
-	return 42.5f+val/480.0f;
+	int16_t val = (tempOutH << 8) | (tempOutL & 0xff);
+	return ((float)val)/100.0f;
 }
 
 
