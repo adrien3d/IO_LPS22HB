@@ -23,7 +23,11 @@ void setup()
 	Serial.begin(9600);
 	Serial.println("IoThings LPS22HB Arduino Test");
 	
-	lps22hb.begin(0x5D);
+	#ifdef ARDUINO_ARDUINO_NANO33BLE
+	lps22hb.begin(0x5C); //Jumper selected or NANO33BLE ADDRESS
+	#else
+	lps22hb.begin(0x5D); //This is the default address
+	#endif
 
 	byte who_am_i = lps22hb.whoAmI();
 	Serial.print("Who Am I? 0x");
