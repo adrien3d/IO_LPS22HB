@@ -20,13 +20,33 @@ IO_LPS22HB::IO_LPS22HB()
 {
 }
 
+#ifdef ARDUINO_ARDUINO_NANO33BLE
+void IO_LPS22HB::begin(uint8_t address) {
+	_address = address;
+	Wire1.begin();
+	write(LPS22HB_RES_CONF, 0x0); // resolution: temp=32, pressure=128
+	write(LPS22HB_CTRL_REG1, 0x00); // one-shot mode
+}
+
+#else
 void IO_LPS22HB::begin(uint8_t address) {
 	_address = address;
 	Wire.begin();
 	write(LPS22HB_RES_CONF, 0x0); // resolution: temp=32, pressure=128
 	write(LPS22HB_CTRL_REG1, 0x00); // one-shot mode
 }
+#endif
 
+#ifdef ARDUINO_ARDUINO_NANO33BLE
+byte IO_LPS22HB::whoAmI() {
+	Wire1.beginTransmission(_address);
+	Wire1.write(LPS22HB_WHO_AM_I);
+	Wire1.endTransmission();
+	Wire1.requestFrom(_address, 1);
+	return Wire1.read();
+}
+
+#else
 byte IO_LPS22HB::whoAmI() {
 	Wire.beginTransmission(_address);
 	Wire.write(LPS22HB_WHO_AM_I);
@@ -34,6 +54,7 @@ byte IO_LPS22HB::whoAmI() {
 	Wire.requestFrom(_address, 1);
 	return Wire.read();
 }
+#endif
 
 float IO_LPS22HB::readPressure() {
 	write(LPS22HB_CTRL_REG2, 0x1);
@@ -110,7 +131,16 @@ uint8_t IO_LPS22HB::status(uint8_t status) {
 	else
 		return 0;
 }
+#ifdef ARDUINO_ARDUINO_NANO33BLE
+uint8_t IO_LPS22HB::read(uint8_t reg) {
+	Wire1.beginTransmission(_address);
+	Wire1.write(reg);
+	Wire1.endTransmission();
+	Wire1.requestFrom(_address, 1);
+	return Wire1.read();
+}
 
+#else
 uint8_t IO_LPS22HB::read(uint8_t reg) {
 	Wire.beginTransmission(_address);
 	Wire.write(reg);
@@ -118,10 +148,21 @@ uint8_t IO_LPS22HB::read(uint8_t reg) {
 	Wire.requestFrom(_address, 1);
 	return Wire.read();
 }
+#endif
 
+#ifdef ARDUINO_ARDUINO_NANO33BLE
+void IO_LPS22HB::write(uint8_t reg, uint8_t data) {
+	Wire1.beginTransmission(_address);
+	Wire1.write(reg);
+	Wire1.write(data);
+	Wire1.endTransmission();
+}
+
+#else
 void IO_LPS22HB::write(uint8_t reg, uint8_t data) {
 	Wire.beginTransmission(_address);
 	Wire.write(reg);
 	Wire.write(data);
 	Wire.endTransmission();
 }
+#endif

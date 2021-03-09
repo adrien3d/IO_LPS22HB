@@ -17,13 +17,18 @@
 #include "IO_LPS22HB.h"
 
 IO_LPS22HB lps22hb;
+float seaLevelPressure = 1024.6; //average sea level pressure is 1013.25
 
 void setup()
 {
 	Serial.begin(9600);
 	Serial.println("IoThings LPS22HB Arduino Test");
 	
-	lps22hb.begin(0x5D);
+	#ifdef ARDUINO_ARDUINO_NANO33BLE
+	lps22hb.begin(0x5C); //Jumper selected or NANO33BLE ADDRESS
+	#else
+	lps22hb.begin(0x5D); //This is the default address
+	#endif
 
 	byte who_am_i = lps22hb.whoAmI();
 	Serial.print("Who Am I? 0x");
@@ -43,7 +48,9 @@ void loop()
 	Serial.print(lps22hb.readPressure());
 	Serial.print(" mbar, T=");
 	Serial.print(lps22hb.readTemperature());
-	Serial.println("C");
+	Serial.print("C, Alt=");
+  	Serial.print((44330.0f * (1.0f -pow((double)lps22hb.readPressure()/(double)seaLevelPressure, 0.1902949f))));
+  	Serial.println("m");
 	delay(300);
 }
 

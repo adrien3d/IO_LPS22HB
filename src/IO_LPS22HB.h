@@ -18,12 +18,12 @@
 #include <Arduino.h>
 
 #define LPS22HB_WHO_AM_I	0X0F //Who am I
-#define LPS22HB_RES_CONF	0X1A //Resolution
-#define LPS22HB_CTRL_REG1	0X10
-#define LPS22HB_CTRL_REG2	0X11
-#define LPS22HB_STATUS_REG	0X27
-#define LPS22HB_PRES_OUT_XL	0X28 //LSB
-#define LPS22HB_PRES_OUT_L	0X29
+#define LPS22HB_RES_CONF	0X1A //Normal (0) or Low current mode (1)
+#define LPS22HB_CTRL_REG1	0X10 //output rate and filter settings
+#define LPS22HB_CTRL_REG2	0X11 //BOOT FIFO_EN STOP_ON_FTH IF_ADD_INC I2C_DIS SWRESET One_Shot
+#define LPS22HB_STATUS_REG	0X27 //Temp or Press data available bits
+#define LPS22HB_PRES_OUT_XL	0X28 //XLSB
+#define LPS22HB_PRES_OUT_L	0X29 //LSB
 #define LPS22HB_PRES_OUT_H	0X2A //MSB
 #define LPS22HB_TEMP_OUT_L	0X2B //LSB
 #define LPS22HB_TEMP_OUT_H	0X2C //MSB
