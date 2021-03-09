@@ -48,7 +48,7 @@ void loop()
 	Serial.print(lps22hb.readPressure());
 	Serial.print(" mbar, T=");
 	Serial.print(lps22hb.readTemperature());
-	Serial.print("C, Altitude=");
+	Serial.print("C, Alt=");
   	Serial.print((44330.0f * (1.0f -pow((double)lps22hb.readPressure()/(double)seaLevelPressure, 0.1902949f))));
   	Serial.println("m");
 	delay(300);
