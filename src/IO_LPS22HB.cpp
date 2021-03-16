@@ -66,7 +66,7 @@ float IO_LPS22HB::readPressure() {
 	uint8_t pressOutL = read(LPS22HB_PRES_OUT_L);
 	uint8_t pressOutXL = read(LPS22HB_PRES_OUT_XL);
 
-	long val = ( ((long)pressOutH << 24) | ((long)pressOutL << 16) | ((long)pressOutXL << 8)) >> 8;
+	long val = ( ((long)pressOutH << 16) | ((long)pressOutL << 8) | (long)pressOutXL );
 	//if (val == 1.00) readPressure();
 	return val/4096.0f;
 }
@@ -81,8 +81,7 @@ uint32_t IO_LPS22HB::readPressureRAW() {
 	uint8_t pressOutL = read(LPS22HB_PRES_OUT_L);
 	uint8_t pressOutXL = read(LPS22HB_PRES_OUT_XL);
 
-	int32_t val = ((pressOutH << 24) | (pressOutL << 16) | (pressOutXL << 8));
-	val >> 8;
+	int32_t val = ( (pressOutH << 16) | (pressOutL << 8) | pressOutXL );
 	val=val+0x400000;
 	//if (val == 1.00) readPressure();
 	return (uint32_t)val;
@@ -98,7 +97,7 @@ uint32_t IO_LPS22HB::readPressureUI() {
 	uint8_t pressOutL = read(LPS22HB_PRES_OUT_L);
 	uint8_t pressOutXL = read(LPS22HB_PRES_OUT_XL);
 
-	uint32_t val = ((pressOutH << 24) | (pressOutL << 16) | (pressOutXL << 8)) >> 8;
+	uint32_t val = ((pressOutH << 16) | (pressOutL << 8) | pressOutXL );
 	//if (val == 1.00) readPressure();
 	return val/4096;
 }
